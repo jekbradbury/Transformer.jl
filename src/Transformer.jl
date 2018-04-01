@@ -1,9 +1,7 @@
 module Transformer
 
-include("posenc.jl")
-include("layers.jl")
-
 # 1. first try EncoderLayer on its own:
+include("layers.jl")
 d = 4 # model size
 t = 5 # timesteps
 layer = EncoderLayer(d, 2d)
@@ -12,6 +10,7 @@ x = rand(d, t)
 layer(x)
 
 # 2. then try Encoder
+include("posenc.jl")
 v = 10 # vocab size
 n = 3 # number of layers
 encoder = Encoder(d, 2d, n, v)
