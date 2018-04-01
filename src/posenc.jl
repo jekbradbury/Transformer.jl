@@ -1,3 +1,6 @@
+using GPUArrays
+using Minibatch
+
 function posenc(timestep::Integer, channel::Integer, nchannels::Integer)
     if iseven(channel)
         return sin(timestep/(10000^(channel/nchannels)))
