@@ -28,7 +28,7 @@ Attention(d_key::Integer, causal=false) = Attention(sqrt(d_key))
 function (l::Attention)(q, k, v)
     alpha = k'*q
     # TODO causal mask
-    return v*softmax(alpha, 1)
+    return v*softmax(alpha, dim=1)
 end
 Flux.mapchildren(f, l::Attention) = Attention(l.scale)
 
