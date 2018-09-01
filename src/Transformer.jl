@@ -5,9 +5,10 @@ include("layers.jl")
 d = 4 # model size
 t = 5 # timesteps
 layer = EncoderLayer(d, 2d)
-layer = Flux.mapleaves(Flux.Tracker.data, layer) # disable Tracker
 x = rand(d, t)
 layer(x)
+layer_noad = Flux.mapleaves(Flux.Tracker.data, layer) # disable Tracker
+layer_noad(x)
 
 # 2. then try Encoder
 include("posenc.jl")

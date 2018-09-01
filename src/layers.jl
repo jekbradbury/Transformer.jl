@@ -6,7 +6,7 @@ struct Embedding
 end
 Embedding(vocabsize, embedsize) = Embedding(param(randn(embedsize, vocabsize)))
 (embedding::Embedding)(x) = embedding.W[:, x]
-Flux.treelike(Embedding)
+Flux.@treelike Embedding
 
 FeedForward(d_model, d_hidden) = Chain(Dense(d_model, d_hidden, relu), Dense(d_hidden, d_model))
 
@@ -17,7 +17,7 @@ struct ResidualBlock
 end
 ResidualBlock(l, d_model::Integer) = ResidualBlock(l, LayerNorm(d_model))
 (l::ResidualBlock)(x...) = x[1] .+ l.norm(l.l(x...))
-Flux.treelike(ResidualBlock)
+Flux.@treelike ResidualBlock
 
 struct Attention
     scale
@@ -28,7 +28,7 @@ Attention(d_key::Integer, causal=false) = Attention(sqrt(d_key))
 function (l::Attention)(q, k, v)
     alpha = k'*q
     # TODO causal mask
-    return v*softmax(alpha, dim=1)
+    return v*softmax(alpha, dims=1)
 end
 Flux.mapchildren(f, l::Attention) = Attention(l.scale)
 
@@ -42,7 +42,7 @@ EncoderLayer(d_model::Integer, d_hidden::Integer) = EncoderLayer(
     ResidualBlock(Attention(d_model), d_model),
     ResidualBlock(FeedForward(d_model, d_hidden), d_model))
 (l::EncoderLayer)(x) = l.feedforward(l.selfattn(x, x, x))
-Flux.treelike(EncoderLayer)
+Flux.@treelike EncoderLayer
 
 struct Encoder
     embed
@@ -56,4 +56,4 @@ function (l::Encoder)(x)
     encoding = [x = l(x) for l in l.layers.layers]
     return encoding
 end
-Flux.treelike(Encoder)
+Flux.@treelike Encoder

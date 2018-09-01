@@ -34,7 +34,7 @@ Cuando la gente habla de pensamiento mágico, generalmente es como un rasgo cogn
 Si nos damos cuenta del pensamiento mágico en nosotros mismos, es con una espiral de vergüenza: se supone que los adultos alfabetizados son más sofisticados que eso.
 Al mismo tiempo, el pensamiento mágico es obviamente desenfrenado en el mundo.
 Es difícil no estar fascinado, aunque sea una fascinación horrorizada.
-Creo que la razón por la que ha sido tan difícil definir con precisión el “pensamiento mágico” es que lo que llamamos "pensamiento mágico" es una colección de ejemplos estigmatizados de una capacidad cognitiva más general, y en general útil.
+Creo que la razón por la que ha sido tan difícil definir con precisión el “pensamiento mágico” es que lo que llamamos “pensamiento mágico” es una colección de ejemplos estigmatizados de una capacidad cognitiva más general, y en general útil.
 Esta es la capacidad de pensar en modo “como si”: “como si” los objetos inanimados tuvieran mente, “como si” los pensamientos pudieran afectar a la realidad, “como si” los símbolos tuvieran poder sobre sus referentes."""
 
 #corpus = zip(english, spanish)
